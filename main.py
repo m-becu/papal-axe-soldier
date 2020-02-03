@@ -1,8 +1,8 @@
 from pygame_functions import *
 
 
-H = 600
-W = 600
+H = 1920
+W = 1080
 HALF_H = H / 2
 HALF_W = W / 2
 
@@ -10,7 +10,7 @@ INV_OPEN = False
 
 
 # creating the screen
-screenSize(H,W)
+screenSize(H,W,fullscreen=True)
 
 # set background color
 setBackgroundColour("pink")
@@ -18,13 +18,13 @@ setBackgroundColour("pink")
 # loads sprite
 player  = makeSprite("assets/side_walk.png", 6)  # links.gif contains 32 separate frames of animation.
 sprite_apple = makeSprite("assets/inv_apple.png")
-sprite_apple = makeSprite("assets/inv_map.png")
+sprite_map = makeSprite("assets/inv_map.png")
 
 
 # move the perso at the center of the screen
-moveSprite(player,HALF_W,HALF_H,True)
+moveSprite(player,HALF_W,HALF_H)
 showSprite(player)
-transformSprite(player, 0, 15)
+transformSprite(player, 0, 3)
 
 nextFrame = clock()
 frame = 0
@@ -50,9 +50,15 @@ while True:
     elif keyPressed("i"):
         if INV_OPEN:
             INV_OPEN = False
+            moveSprite(sprite_apple,HALF_W,HALF_H+HALF_H/2)
+            moveSprite(sprite_map,HALF_W,HALF_H-HALF_H/2)
+            showSprite(sprite_apple)
+            showSprite(sprite_map)
 
         else:
             INV_OPEN = True
+            hideSprite(sprite_apple)
+            hideSprite(sprite_map)
     else:
         changeSpriteImage(player, 0)  # the static facing front look
 

@@ -336,6 +336,7 @@ def transformSprite(sprite, angle, scale, hflip=False, vflip=False):
         updateDisplay()
 
 
+
 def killSprite(sprite):
     sprite.kill()
     if screenRefresh:
