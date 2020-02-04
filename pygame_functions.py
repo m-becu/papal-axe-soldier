@@ -277,8 +277,9 @@ class newLabel(pygame.sprite.Sprite):
 
 def loadImage(fileName, useColorKey=False):
     if os.path.isfile(fileName):
-        image = pygame.image.load(fileName)
-        image = image.convert_alpha()
+        image = pygame.image.load(fileName).convert()
+        image.set_colorkey( (0,0,0) )
+        #image = image.convert_alpha()
         # Return the image
         return image
     else:
@@ -571,6 +572,15 @@ def keyPressed(keyCheck=""):
             return True
     return False
 
+
+def keyPressed(keyCheck=""):
+    global keydict
+    pygame.event.clear()
+    keys = pygame.key.get_pressed()
+    if sum(keys) > 0:
+        if keyCheck == "" or keys[keydict[keyCheck.lower()]]:
+            return True
+    return False
 
 def makeLabel(text, fontSize, xpos, ypos, fontColour='black', font='Arial', background="clear"):
     # make a text sprite

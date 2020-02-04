@@ -1,16 +1,16 @@
 from pygame_functions import *
 
 
-H = 1920
-W = 1080
-HALF_H = H / 2
+W = 600
+H = 600
 HALF_W = W / 2
+HALF_H = H / 2
 
 INV_OPEN = False
 
 
 # creating the screen
-screenSize(H,W,fullscreen=True)
+screenSize(W,H,fullscreen=True)
 
 # set background color
 setBackgroundColour("pink")
@@ -22,9 +22,11 @@ sprite_map = makeSprite("assets/inv_map.png")
 
 
 # move the perso at the center of the screen
-moveSprite(player,HALF_W,HALF_H)
+moveSprite(player,HALF_W,HALF_H,True)
 showSprite(player)
-transformSprite(player, 0, 3)
+transformSprite(player,0,4)
+
+
 
 nextFrame = clock()
 frame = 0
@@ -50,8 +52,8 @@ while True:
     elif keyPressed("i"):
         if INV_OPEN:
             INV_OPEN = False
-            moveSprite(sprite_apple,HALF_W,HALF_H+HALF_H/2)
-            moveSprite(sprite_map,HALF_W,HALF_H-HALF_H/2)
+            moveSprite(sprite_apple,HALF_H+HALF_H/2,HALF_W)
+            moveSprite(sprite_map,HALF_H-HALF_H/2,HALF_W)
             showSprite(sprite_apple)
             showSprite(sprite_map)
 
